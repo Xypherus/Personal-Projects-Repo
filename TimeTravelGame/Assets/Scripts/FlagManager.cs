@@ -19,6 +19,7 @@ public class FlagManager : MonoBehaviour
     }
     #endregion
 
+    //Global Variable Information
     [System.Serializable]
     public class DefaultGlobalVariable
     {
@@ -26,8 +27,10 @@ public class FlagManager : MonoBehaviour
         public bool value;
     }
     public DefaultGlobalVariable[] defaultGlobalVariables;
-
     public Dictionary<string, bool> GlobalVariables;
+
+    //InTime Variable Information
+    public Dictionary<string, bool> InTimeVariables;
 
     public int startSceneNumber = 1;
 
@@ -42,6 +45,8 @@ public class FlagManager : MonoBehaviour
                 GlobalVariables.Add("$" + dgv.key, dgv.value);
             }
         }
+
+        InTimeVariables = new Dictionary<string, bool>();
 
         Debug.Log("Global Variables Length = " + GlobalVariables.Count);
         loadIntoScene(startSceneNumber);

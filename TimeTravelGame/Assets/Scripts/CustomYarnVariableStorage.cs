@@ -58,7 +58,7 @@ public class CustomYarnVariableStorage : Yarn.Unity.VariableStorageBehaviour, IE
     internal void Awake()
     {
         Debug.Log("Variable Storage Initilized");
-        
+
         ResetToDefaults();
     }
 
@@ -121,9 +121,15 @@ public class CustomYarnVariableStorage : Yarn.Unity.VariableStorageBehaviour, IE
         initilized = false;
         foreach (var global in FlagManager.FlagManagerInstance.GlobalVariables)
         {
-            Debug.Log("Adding Variable " + global.Key);
+            Debug.Log("Adding Global Variable " + global.Key);
             var v = new Yarn.Value(global.Value);
             SetValue(global.Key, v);
+        }
+        foreach (var inTime in FlagManager.FlagManagerInstance.InTimeVariables)
+        {
+            Debug.Log("Adding Local Variable " + inTime.Key);
+            var v = new Yarn.Value(inTime.Value);
+            SetValue(inTime.Key, v);
         }
         initilized = true;
 
@@ -144,11 +150,24 @@ public class CustomYarnVariableStorage : Yarn.Unity.VariableStorageBehaviour, IE
 
         if (FlagManager.FlagManagerInstance != null)
         {
-            Debug.Log("Attempting to edit Global Variable " + variableName);
+            //Debug.Log("Attempting to edit Global Variable " + variableName);
             if (FlagManager.FlagManagerInstance.GlobalVariables.ContainsKey(variableName) && value.type == Yarn.Value.Type.Bool && initilized)
             {
                 Debug.Log("Editing Global Variable " + variableName);
                 FlagManager.FlagManagerInstance.GlobalVariables[variableName] = value.AsBool;
+            }
+            else if (value.type == Yarn.Value.Type.Bool && initilized)
+            {
+                if (FlagManager.FlagManagerInstance.InTimeVariables.ContainsKey(variableName))
+                {
+                    Debug.Log("Editing InTime Variable " + variableName);
+                    FlagManager.FlagManagerInstance.InTimeVariables[variableName] = value.AsBool;
+                }
+                else
+                {
+                    Debug.Log("Adding InTime Variable " + variableName);
+                    FlagManager.FlagManagerInstance.InTimeVariables.Add(variableName, value.AsBool);
+                }
             }
         }
     }
