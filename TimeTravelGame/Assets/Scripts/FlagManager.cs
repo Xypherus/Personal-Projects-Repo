@@ -44,27 +44,36 @@ public class FlagManager : MonoBehaviour
             saveName = name;
             activeSceneIndex = sceneIndex;
             position = pos;
-            inTimeFlags = flags;
+            inTimeFlags = new Dictionary<string, bool>(flags);
         }
         public override string ToString()
         {
-            string toReturn = "Save Name: " + saveName + "\nSaved in Scene " + activeSceneIndex + " with player at position " + position;
+            string toReturn = "Save Name: " + saveName + "\nSaved in Scene " + activeSceneIndex
+                            + " with player at position " + position + "\nNumber of Variables: " + inTimeFlags.Count;
             return toReturn;
         }
     }
     public List<SaveState> saves;
 
     public int startSceneNumber = 1;
+    public Vector2 playerPositionToSet;
+    private bool firstLoad;
 
     private GameObject playerReference;
     public void SetPlayer(GameObject player)
     {
         playerReference = player;
+        if (!firstLoad)
+        {
+            player.transform.position = playerPositionToSet;
+        }
+        firstLoad = false;
     }
 
     // Start is called before the first frame update
     void Start()
     {
+        firstLoad = true;
         GlobalVariables = new Dictionary<string, bool>();
         foreach (DefaultGlobalVariable dgv in defaultGlobalVariables)
         {
@@ -79,6 +88,12 @@ public class FlagManager : MonoBehaviour
 
         saves = new List<SaveState>();
         loadIntoScene(startSceneNumber);
+    }
+
+    IEnumerator WaitSceneLoad(float delay, int sceneNum)
+    {
+        yield return new WaitForSeconds(delay);
+        loadIntoScene(sceneNum);
     }
 
     public bool CreateSaveState()
@@ -107,6 +122,23 @@ public class FlagManager : MonoBehaviour
         else { return false; }
     }
 
+    public bool LoadSaveState(int index)
+    {
+        Debug.Log(saves.Count);
+        if (saves.Count >= index && saves.Count != 0)
+        {
+            var state = saves[index];
+            Debug.Log("Loading " + state.ToString());
+
+            InTimeVariables = new Dictionary<string, bool>(state.inTimeFlags);
+            playerPositionToSet = state.position;
+            StartCoroutine(WaitSceneLoad(1f, state.activeSceneIndex));
+            //loadIntoScene(state.activeSceneIndex);
+            return true;
+        }
+        else { return false; }
+    }
+
     private void loadIntoScene(int sceneNumber)
     {
         SceneManager.LoadScene(sceneNumber);
@@ -117,9 +149,9 @@ public class FlagManager : MonoBehaviour
         //Testing Stuff
         if (Input.GetKeyDown(KeyCode.K))
         {
-            loadIntoScene(startSceneNumber);
+            LoadSaveState(0);
         }
-        if(Input.GetKeyDown(KeyCode.L))
+        if (Input.GetKeyDown(KeyCode.L))
         {
             CreateSaveState();
         }

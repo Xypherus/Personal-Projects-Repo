@@ -2214,8 +2214,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8d6e5226b5d4f54478a7bf3486a0bcc7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  defaultVariables:
-  - name: Test
-    value: 1
-    type: 0
+  defaultVariables: []
   debugTextView: {fileID: 1360919352}
