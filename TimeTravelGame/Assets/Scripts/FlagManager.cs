@@ -26,6 +26,8 @@ public class FlagManager : MonoBehaviour
     {
         public string key;
         public bool value;
+        [TextArea]
+        public string journalEntry;
     }
     public DefaultGlobalVariable[] defaultGlobalVariables;
     public Dictionary<string, bool> GlobalVariables;
@@ -60,13 +62,22 @@ public class FlagManager : MonoBehaviour
     public Vector2 playerPositionToSet;
     private bool firstLoad;
 
+    public bool LoadingOffSave;
+
+    [TextArea]
+    public string journalText;
+
     private GameObject playerReference;
     public void SetPlayer(GameObject player)
     {
         playerReference = player;
         if (!firstLoad)
         {
-            player.transform.position = playerPositionToSet;
+            if(LoadingOffSave)
+            {
+                player.transform.position = playerPositionToSet;
+                LoadingOffSave = false;
+            }
         }
         firstLoad = false;
     }
@@ -75,6 +86,7 @@ public class FlagManager : MonoBehaviour
     void Start()
     {
         firstLoad = true;
+        LoadingOffSave = false;
         GlobalVariables = new Dictionary<string, bool>();
         foreach (DefaultGlobalVariable dgv in defaultGlobalVariables)
         {
@@ -89,6 +101,25 @@ public class FlagManager : MonoBehaviour
 
         saves = new List<SaveState>();
         loadIntoScene(startSceneNumber);
+    }
+
+    public void updateJournalText()
+    {
+        string newText = "";
+        foreach(var item in GlobalVariables)
+        {
+            if(item.Value == true)
+            {
+                foreach(var dgv in defaultGlobalVariables)
+                {
+                    if(item.Key.Contains(dgv.key))
+                    {
+                        newText += "- " + dgv.journalEntry + "\n";
+                    }
+                }
+            }
+        }
+        journalText = newText;
     }
 
     IEnumerator WaitSceneLoad(float delay, int sceneNum)
@@ -129,6 +160,7 @@ public class FlagManager : MonoBehaviour
         if (saves.Count >= index && saves.Count != 0)
         {
             Time.timeScale = 1f;
+            LoadingOffSave = true;
             var state = saves[index];
             Debug.Log("Loading " + state.ToString());
 

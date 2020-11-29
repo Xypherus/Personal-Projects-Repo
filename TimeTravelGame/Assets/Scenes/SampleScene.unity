@@ -236,10 +236,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultGlobalVariables:
-  - key: TestVariable
+  - key: TestVariable1
     value: 1
+    journalEntry: This entry is a test.
+  - key: TestVariable2
+    value: 1
+    journalEntry: This entry is also a test.
   startSceneNumber: 2
   playerPositionToSet: {x: 0, y: 0}
+  LoadingOffSave: 0
+  journalText: 
 --- !u!4 &594245854
 Transform:
   m_ObjectHideFlags: 0

@@ -133,6 +133,7 @@ public class CustomYarnVariableStorage : Yarn.Unity.VariableStorageBehaviour, IE
         }
         initilized = true;
 
+        FlagManager.FlagManagerInstance.updateJournalText();
         Debug.Log("Variables Length = " + variables.Count);
     }
 
@@ -155,6 +156,7 @@ public class CustomYarnVariableStorage : Yarn.Unity.VariableStorageBehaviour, IE
             {
                 Debug.Log("Editing Global Variable " + variableName);
                 FlagManager.FlagManagerInstance.GlobalVariables[variableName] = value.AsBool;
+                FlagManager.FlagManagerInstance.updateJournalText();
             }
             else if (value.type == Yarn.Value.Type.Bool && initilized)
             {

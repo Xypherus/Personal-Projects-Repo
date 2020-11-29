@@ -1,7 +1,6 @@
 title: Ship
 tags: 
-colorID: 0
-position: 721,130
+position: 164,60
 ---
 <<if visited("Ship") is false>>
     Ship: Hey, friend.  #line:5837f2
@@ -31,4 +30,24 @@ position: 721,130
     Player: Uh. #line:ship7
     <<setsprite ShipFace neutral>>
 <<endif>>
+[[Scene Change Info|Ship.SceneChange]]
+===
+title: Ship.SceneChange
+tags: 
+---
+[[Go to Scene 2|Ship.SceneChangeTo2]]
+[[Exit|Ship.Exit]]
+===
+title: Ship.SceneChangeTo2
+tags: 
+position: 135.99987853204283,613.6803654857296
+---
+Ship: Sending you to Scene 2
+<<loadScene FlagHolder 2>>
+===
+title: Ship.Exit
+tags: 
+position: 126.40068769341485,371.49027354943
+---
+Ship: Goodbye
 ===
