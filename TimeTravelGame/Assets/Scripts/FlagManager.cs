@@ -73,7 +73,7 @@ public class FlagManager : MonoBehaviour
         playerReference = player;
         if (!firstLoad)
         {
-            if(LoadingOffSave)
+            if (LoadingOffSave)
             {
                 player.transform.position = playerPositionToSet;
                 LoadingOffSave = false;
@@ -106,14 +106,15 @@ public class FlagManager : MonoBehaviour
     public void updateJournalText()
     {
         string newText = "";
-        foreach(var item in GlobalVariables)
+        foreach (var item in GlobalVariables)
         {
-            if(item.Value == true)
+            if (item.Value == true)
             {
-                foreach(var dgv in defaultGlobalVariables)
+                foreach (var dgv in defaultGlobalVariables)
                 {
-                    if(item.Key.Contains(dgv.key))
+                    if (item.Key.Contains(dgv.key))
                     {
+                        if (dgv.journalEntry == "") { continue; }
                         newText += "- " + dgv.journalEntry + "\n";
                     }
                 }
@@ -177,7 +178,7 @@ public class FlagManager : MonoBehaviour
     public void LoadScene(string sceneNum)
     {
         int sceneToloadNum;
-        if(int.TryParse(sceneNum, out sceneToloadNum))
+        if (int.TryParse(sceneNum, out sceneToloadNum))
         {
             StartCoroutine(WaitSceneLoad(1f, sceneToloadNum));
         }

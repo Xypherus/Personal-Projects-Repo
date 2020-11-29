@@ -34,6 +34,7 @@ position: 164,60
 ===
 title: Ship.SceneChange
 tags: 
+position: -254.20078468322754,348.22021484375
 ---
 [[Go to Scene 2|Ship.SceneChangeTo2]]
 [[Exit|Ship.Exit]]
@@ -50,4 +51,5 @@ tags:
 position: 126.40068769341485,371.49027354943
 ---
 Ship: Goodbye
+<<startScreenEvent EventCanvas "This is a Test Event :break: :break: Test of Linebreak">>
 ===
