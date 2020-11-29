@@ -56,7 +56,7 @@ namespace Yarn.Unity.Example {
             var newPosition = Vector3.Lerp(transform.position, target.position, moveSpeed * Time.deltaTime);
 
             newPosition.x = Mathf.Clamp(newPosition.x, minPosition, maxPosition);
-            newPosition.y = transform.position.y;
+            newPosition.y = Mathf.Clamp(newPosition.y, minPosition, maxPosition);
             newPosition.z = transform.position.z;
 
             transform.position = newPosition;

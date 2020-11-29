@@ -48,6 +48,19 @@ public class EventTextManager : MonoBehaviour
         textToPass = textToPass.Trim(new char[] {' ', '"'});
         StartEvent(textToPass, defaultEventDuration);
     }
+    [YarnCommand("startScreenEventLong")]
+    public void StartEventLongYarnVer(string[] text)
+    {
+        string textToPass = "";
+        foreach (var word in text)
+        {
+            if (word == ":break:") { textToPass += "\n"; }
+            else { textToPass += (word + " "); }
+        }
+        textToPass = textToPass.Trim(new char[] {' ', '"'});
+        textToPass += "\n\n<Press Tab to open Save Menu>";
+        StartEvent(textToPass, 999f);
+    }
 
     IEnumerator delayEndEvent(float time)
     {

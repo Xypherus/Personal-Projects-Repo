@@ -51,5 +51,5 @@ tags:
 position: 126.40068769341485,371.49027354943
 ---
 Ship: Goodbye
-<<startScreenEvent EventCanvas "This is a Test Event :break: :break: Test of Linebreak">>
+<<startScreenEventLong EventCanvas "This is a Test Event :break: :break: Test of Linebreak">>
 ===

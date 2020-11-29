@@ -239,7 +239,7 @@ MonoBehaviour:
   - key: TestVariable
     value: 1
     journalEntry: This entry is a test.
-  startSceneNumber: 1
+  startSceneNumber: 2
   playerPositionToSet: {x: 0, y: 0}
   LoadingOffSave: 0
   journalText: 
