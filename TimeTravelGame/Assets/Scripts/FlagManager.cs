@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using Yarn.Unity;
 
 public class FlagManager : MonoBehaviour
 {
@@ -99,7 +100,7 @@ public class FlagManager : MonoBehaviour
     public bool CreateSaveState()
     {
         //SWITCH LOCATION FOR ACTUAL PLAYER LOCATION WHEN AVAILABLE
-        SaveState toAdd = new SaveState("Save " + saves.Count, SceneManager.GetActiveScene().buildIndex, playerReference.transform.position, InTimeVariables);
+        SaveState toAdd = new SaveState("Save " + (int)(saves.Count + 1), SceneManager.GetActiveScene().buildIndex, playerReference.transform.position, InTimeVariables);
         saves.Add(toAdd);
         Debug.Log("Saved " + toAdd.ToString());
         return true;
@@ -127,6 +128,7 @@ public class FlagManager : MonoBehaviour
         Debug.Log(saves.Count);
         if (saves.Count >= index && saves.Count != 0)
         {
+            Time.timeScale = 1f;
             var state = saves[index];
             Debug.Log("Loading " + state.ToString());
 
@@ -137,6 +139,20 @@ public class FlagManager : MonoBehaviour
             return true;
         }
         else { return false; }
+    }
+
+    [YarnCommand("loadScene")]
+    public void LoadScene(string sceneNum)
+    {
+        int sceneToloadNum;
+        if(int.TryParse(sceneNum, out sceneToloadNum))
+        {
+            StartCoroutine(WaitSceneLoad(1f, sceneToloadNum));
+        }
+        else
+        {
+            Debug.LogError("sceneNum: " + sceneNum + " is unparsable");
+        }
     }
 
     private void loadIntoScene(int sceneNumber)

@@ -238,7 +238,8 @@ MonoBehaviour:
   defaultGlobalVariables:
   - key: TestVariable
     value: 1
-  activeSceneNumber: 1
+  startSceneNumber: 2
+  playerPositionToSet: {x: 0, y: 0}
 --- !u!4 &594245854
 Transform:
   m_ObjectHideFlags: 0

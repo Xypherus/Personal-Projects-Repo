@@ -40,6 +40,8 @@ namespace Yarn.Unity.Example
 
         public float movementFromButtons { get; set; }
 
+        private PolyNavAgent agent;
+
         /// Draw the range at which we'll start talking to people.
         void OnDrawGizmosSelected()
         {
@@ -55,6 +57,7 @@ namespace Yarn.Unity.Example
         private void Awake()
         {
             FlagManager.FlagManagerInstance.SetPlayer(gameObject);
+            agent = gameObject.GetComponent<PolyNavAgent>();
         }
 
         /// Update is called once per frame
@@ -64,17 +67,18 @@ namespace Yarn.Unity.Example
             // Remove all player control when we're in dialogue
             if (FindObjectOfType<DialogueRunner>().IsDialogueRunning == true)
             {
+                agent.Stop();
                 return;
             }
 
             if(Input.GetMouseButtonDown(1))
             {
                 destination = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-                Debug.Log(destination);
+                agent.SetDestination(destination);
             }
 
             // Detect if we want to start a conversation
-            if (Input.GetKeyDown(KeyCode.Space))
+            if (Input.GetMouseButtonDown(0))
             {
                 CheckForNearbyNPC();
             }
