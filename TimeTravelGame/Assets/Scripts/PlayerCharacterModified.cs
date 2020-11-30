@@ -41,6 +41,7 @@ namespace Yarn.Unity.Example
         public float movementFromButtons { get; set; }
 
         private PolyNavAgent agent;
+        private GameObject eventPanel;
 
         /// Draw the range at which we'll start talking to people.
         void OnDrawGizmosSelected()
@@ -58,6 +59,7 @@ namespace Yarn.Unity.Example
         {
             FlagManager.FlagManagerInstance.SetPlayer(gameObject);
             agent = gameObject.GetComponent<PolyNavAgent>();
+            eventPanel = GameObject.Find("Panel").gameObject;
         }
 
         /// Update is called once per frame
@@ -78,7 +80,7 @@ namespace Yarn.Unity.Example
             }
 
             // Detect if we want to start a conversation
-            if (Input.GetMouseButtonDown(0))
+            if (Input.GetMouseButtonDown(0) && eventPanel.activeInHierarchy == false)
             {
                 CheckForNearbyNPC();
             }

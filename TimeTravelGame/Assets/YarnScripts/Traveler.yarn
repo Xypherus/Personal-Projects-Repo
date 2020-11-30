@@ -1,0 +1,24 @@
+﻿title: Traveler
+tags: 
+position: 429.3473617932623,41.77791447206039
+---
+Traveler: Damn raiders blocking the roads, I have places I need to be...
+<<if $agree_to_help is true>>
+    [[Kill the Traveler|Traveler.Kill]]
+<<endif>>
+[[Goodbye|Traveler.Goodbye]]
+===
+title: Traveler.Goodbye
+tags: 
+position: 319.4247247139979,407.24195162574773
+---
+Traveler: See you around, I hope.
+===
+title: Traveler.Kill
+tags: 
+position: 587.6539480297902,411.044652480675
+---
+<<useAction FlagHolder 1>>
+<<startScreenEvent EventCanvas "The agent rends the traveler to ash. :break: :break: In moments there is nothing left.">>
+<<execute Traveler>>
+===

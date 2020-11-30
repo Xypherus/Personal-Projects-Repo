@@ -25,6 +25,7 @@ SOFTWARE.
 */
 
 using UnityEngine;
+using Yarn.Unity;
 
 namespace Yarn.Unity.Example {
     /// attached to the non-player characters, and stores the name of the Yarn
@@ -44,6 +45,12 @@ namespace Yarn.Unity.Example {
                 DialogueRunner dialogueRunner = FindObjectOfType<Yarn.Unity.DialogueRunner>();
                 dialogueRunner.Add(scriptToLoad);                
             }
+        }
+
+        [YarnCommand("execute")]
+        public void Kill()
+        {
+            gameObject.SetActive(false);
         }
     }
 

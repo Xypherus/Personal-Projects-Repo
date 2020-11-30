@@ -236,13 +236,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   defaultGlobalVariables:
-  - key: TestVariable
-    value: 1
-    journalEntry: This entry is a test.
+  - key: ThereAreRaiders
+    value: 0
+    journalEntry: Verne is under threat from unusually competent raiders.
+  - key: ThereIsInfiltrator
+    value: 0
+    journalEntry: The raiders have an infiltrator in the town that will open the
+      gate for them.
+  - key: InfiltratorIdentityKnown
+    value: 0
+    journalEntry: The Infiltrator is the Verne's Butcher.
   startSceneNumber: 2
   playerPositionToSet: {x: 0, y: 0}
   LoadingOffSave: 0
   journalText: 
+  startingActions: 3
+  remainingActions: 0
 --- !u!4 &594245854
 Transform:
   m_ObjectHideFlags: 0

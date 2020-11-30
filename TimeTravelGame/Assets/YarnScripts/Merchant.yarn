@@ -1,0 +1,25 @@
+﻿title: Merchant
+tags: 
+position: 179.92660443983928,-245.919815718653
+---
+Merchant: Best Prices, this side of the Frontier!
+<<if $agree_to_help is true>>
+    [[Kill the Merchant|Merchant.Kill]]
+<<endif>>
+[[Goodbye|Merchant.Goodbye]]
+===
+title: Merchant.Goodbye
+tags: 
+position: 72.011818344966,66.13224144862161
+---
+Merchant: Do come back.
+===
+
+title: Merchant.Kill
+tags: 
+position: 305.24661133876265,64.12444350729646
+---
+<<useAction FlagHolder 1>>
+<<startScreenEvent EventCanvas "The agent rends the merchant to ash. :break: :break: In moments there is nothing left.">>
+<<execute Merchant>>
+===

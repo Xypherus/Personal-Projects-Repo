@@ -1,0 +1,25 @@
+﻿title: Butcher
+tags: 
+position: 273.3528776168823,224.60205078125
+---
+Butcher: Fresh Meat, Straight from the hog!
+<<if $agree_to_help is true>>
+    [[Kill the Butcher|Butcher.kill]]
+<<endif>>
+[[Goodbye...|Butcher.goodbye]]
+===
+title: Butcher.kill
+tags: 
+position: 426.6583283376729,604.473878606847
+---
+<<useAction FlagHolder 1>>
+<<startScreenEvent EventCanvas "The agent rends the butcher to ash. :break: :break: In moments there is nothing left.">>
+<<set $butcher_alive to false>>
+<<execute Butcher>>
+===
+title: Butcher.goodbye
+tags: 
+position: 160.78188110929995,601.9814363301766
+---
+Butcher: Come back Anytime!
+===

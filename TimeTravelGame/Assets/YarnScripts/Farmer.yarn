@@ -1,0 +1,23 @@
+﻿title: Farmer
+tags: 
+---
+Farmer: I hope these raiders are dealt with soon, it's almost planting season...
+<<if $agree_to_help is true>>
+    [[Kill the Farmer|Farmer.Kill]]
+<<endif>>
+[[Goodbye|Farmer.Goodbye]]
+===
+title: Farmer.Goodbye
+tags: 
+position: 192.03944176759484,591.902650989882
+---
+Farmer: Good fortunes stranger.
+===
+title: Farmer.Kill
+tags: 
+position: 471.53660934427353,593.3088811174728
+---
+<<useAction FlagHolder 1>>
+<<startScreenEvent EventCanvas "The agent rends the farmer to ash. :break: :break: In moments there is nothing left.">>
+<<execute Farmer>>
+===

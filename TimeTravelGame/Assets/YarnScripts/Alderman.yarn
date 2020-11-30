@@ -1,0 +1,105 @@
+﻿title: Alderman
+tags: 
+position: 69.01072925391628,40.77197170694808
+---
+<<if $alderman_spoken is false>>
+    Alderman: Welcome to Vurne traveler.
+    Alderman: Though I'm afriad you've come at a bad time.
+<<else>>
+    Alderman: Greetings traveler.
+<<endif>>
+<<set $alderman_spoken to true>>
+
+<<if $agree_to_help is false>>
+    <<if $guard_spoken>>
+        [[The Guard said you wanted to speak?|Alderman.RequestHelp]]
+    <<else>>
+        [[Is something troubling you?|Alderman.RequestHelp]]
+    <<endif>>
+<<endif>>
+[[Goodbye.|Alderman.Goodbye]]
+===
+title: Alderman.RequestHelp
+tags: 
+position: 65.7933572262946,299.7546850912421
+---
+<<if $guard_spoken>>
+    Alderman: Yes he did.
+    Alderman: We're facing troubled times,
+    Alderman: and so he's sending me anyone who may be able to help.
+<<else>>
+    Alderman: I suppose that something is.
+<<endif>>
+Alderman: A group of raiders is rallying for an attack.
+Alderman: Our guards could've handeled this normally, but...
+Alderman: We've heard from other independent towns that these raiders are unusually effective.
+Alderman: They seem to be able to breach walls in moments.
+Alderman: I know you shouldn't have to concern yourself with our issues, but if you could help...
+<<set $ThereAreRaiders to true>>
+[[Why would you trust me with this|Alderman.Question]]
+[[I can help, but I need to know more|Alderman.Agree]]
+[[Sorry but I cannot help you|Alderman.Refuse]]
+===
+title: Alderman.Goodbye
+tags: 
+position: -201.52287859724788,302.5426395242541
+---
+Alderman: Goodbye...
+===
+title: Alderman.Question
+tags: 
+position: -201.53898398974854,590.2740119116894
+---
+Alderman: A valid question, I suppose.
+Alderman: I suppose I'm just at wits end.
+Alderman: Town after town as been burning, and no-one seems to be able to stop it.
+Alderman: Besides, think of me what you will, but you seem trustworthy...
+Alderman: I know, staking our lives on a hunch isn't a good idea but it's all we have left...
+Alderman: So please, if you can, will you help us?
+[[Tell me what you know|Alderman.Agree]]
+[[Sorry but I cannot help you|Alderman.Refuse]]
+===
+title: Alderman.Agree
+tags: 
+position: 72.89369147356786,902.1845686972473
+---
+Alderman: Thank you traveler!
+Alderman: We don't know much, but one of our hunters has given me a location which may be one of the raider camps.
+Alderman: Talk to the guard at the gate, he can lead you there.
+Alderman: Spirits bless your journey.
+<<set $agree_to_help to true>>
+<<setCountdownActive EventCanvas true>>
+===
+title: Alderman.Refuse
+tags: 
+position: -202.25375416694402,904.9403408042313
+---
+Alderman: Unfortunate, but understandable.
+Alderman: Still, feel free to stay.
+Alderman: Our walls are probably still safer than the open road with these raiders about.
+[[I'll take my chances|Alderman.RefuseLeave]]
+[[I'll stick around|Alderman.RefuseStay]]
+<<if $ThereIsInfiltrator is true>>
+    [[I'll stick around (and watch for the Infiltrator)|Alderman.RefuseWatch]]
+<<endif>>
+===
+title: Alderman.RefuseLeave
+tags: 
+position: 23.393560127110618,1182.5534268171868
+---
+<<startScreenEventLong EventCanvas "The agent leaves Vurne, with the town soon burning behind them, the guards unable to repel the raiders.">>
+===
+title: Alderman.RefuseStay
+tags: 
+position: -225.9565997555694,1188.2852649308475
+---
+<<set $ThereIsInfiltrator to true>>
+<<startScreenEventLong EventCanvas "The raiders breach the town quickly and lay it to waste, though the agent sees a cloaked figure opening a passage through the walls before the town falls.">>
+===
+title: Alderman.RefuseWatch
+tags: 
+position: -470.55923832863385,1187.436276003802
+---
+<<set $InfiltratorIdentityKnown to true>>
+<<startScreenEventLong EventCanvas "While the town still falls, the agent is able to catch the infiltrator in the end. It is town's Butcher.">>
+===

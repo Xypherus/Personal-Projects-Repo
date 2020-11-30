@@ -40,19 +40,23 @@ public class FlagManager : MonoBehaviour
     {
         public string saveName;
         public int activeSceneIndex;
+        public int remainingActions;
         public Vector2 position;
         public Dictionary<string, bool> inTimeFlags;
-        public SaveState(string name, int sceneIndex, Vector2 pos, Dictionary<string, bool> flags)
+        public bool isCountdownActive;
+        public SaveState(string name, int sceneIndex, int actionsRemain, Vector2 pos, Dictionary<string, bool> flags, bool countdownActive)
         {
             saveName = name;
             activeSceneIndex = sceneIndex;
             position = pos;
+            remainingActions = actionsRemain;
             inTimeFlags = new Dictionary<string, bool>(flags);
+            isCountdownActive = countdownActive;
         }
         public override string ToString()
         {
             string toReturn = "Save Name: " + saveName + "\nSaved in Scene " + activeSceneIndex
-                            + " with player at position " + position + "\nNumber of Variables: " + inTimeFlags.Count;
+                            + " with player at position " + position + "\nNumber of Variables: " + inTimeFlags.Count + "\nRemaining Actions: " + remainingActions;
             return toReturn;
         }
     }
@@ -66,6 +70,24 @@ public class FlagManager : MonoBehaviour
 
     [TextArea]
     public string journalText;
+
+    public bool intimeCountdownActive = false;
+    public int startingActions;
+    public int remainingActions;
+    [YarnCommand("useAction")]
+    public void useAction(string num)
+    {
+        int actionNum;
+        if (int.TryParse(num, out actionNum))
+        {
+            remainingActions -= actionNum;
+            GameObject.FindObjectOfType<CountdownManager>().actionUsed();
+        }
+        else
+        {
+            Debug.LogError("Action to use Num: " + num + " is unparsable");
+        }
+    }
 
     private GameObject playerReference;
     public void SetPlayer(GameObject player)
@@ -87,6 +109,8 @@ public class FlagManager : MonoBehaviour
     {
         firstLoad = true;
         LoadingOffSave = false;
+        intimeCountdownActive = false;
+        remainingActions = startingActions;
         GlobalVariables = new Dictionary<string, bool>();
         foreach (DefaultGlobalVariable dgv in defaultGlobalVariables)
         {
@@ -132,7 +156,8 @@ public class FlagManager : MonoBehaviour
     public bool CreateSaveState()
     {
         //SWITCH LOCATION FOR ACTUAL PLAYER LOCATION WHEN AVAILABLE
-        SaveState toAdd = new SaveState("Save " + (int)(saves.Count + 1), SceneManager.GetActiveScene().buildIndex, playerReference.transform.position, InTimeVariables);
+        SaveState toAdd = new SaveState("Save " + (int)(saves.Count + 1), SceneManager.GetActiveScene().buildIndex, remainingActions,
+                                         playerReference.transform.position, InTimeVariables, intimeCountdownActive);
         saves.Add(toAdd);
         Debug.Log("Saved " + toAdd.ToString());
         return true;
@@ -147,7 +172,8 @@ public class FlagManager : MonoBehaviour
         if (!match)
         {
             //SWITCH LOCATION FOR ACTUAL PLAYER LOCATION WHEN AVAILABLE
-            SaveState toAdd = new SaveState(saveName, SceneManager.GetActiveScene().buildIndex, playerReference.transform.position, InTimeVariables);
+            SaveState toAdd = new SaveState(saveName, SceneManager.GetActiveScene().buildIndex, remainingActions, playerReference.transform.position,
+                                            InTimeVariables, intimeCountdownActive);
             saves.Add(toAdd);
             Debug.Log("Saved " + toAdd.ToString());
             return true;
@@ -167,6 +193,8 @@ public class FlagManager : MonoBehaviour
 
             InTimeVariables = new Dictionary<string, bool>(state.inTimeFlags);
             playerPositionToSet = state.position;
+            intimeCountdownActive = state.isCountdownActive;
+            remainingActions = state.remainingActions;
             StartCoroutine(WaitSceneLoad(1f, state.activeSceneIndex));
             //loadIntoScene(state.activeSceneIndex);
             return true;
@@ -203,6 +231,10 @@ public class FlagManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.L))
         {
             CreateSaveState();
+        }
+        if(Input.GetKeyDown(KeyCode.B))
+        {
+            useAction("1");
         }
     }
 }
