@@ -1,0 +1,35 @@
+﻿title: Guard
+tags: 
+position: 249.26071206457243,102.73715126966857
+---
+<<if $guard_spoken is true>>
+    Guard: Hello Traveler
+<<else>>
+    Guard: Who...?
+    Guard: Oh... Don't mind me.
+    Guard: Welcome to Vurne traveler, though you've come at a bad time.
+    Guard: Though that might mean opertunity for your type.
+    Guard: You may want to speak to the Alderman.
+    Guard: Head to the house straight to the north if you're intreasted.
+    <<set $guard_spoken to true>>
+<<endif>>
+
+<<if $agree_to_help is true>>
+    [[Travel to the Raider Camp|Guard.Travel]]
+<<endif>>
+[[Goodbye|Guard.Goodbye]]
+===
+title: Guard.Goodbye
+tags: 
+position: 95.66825057499572,361.62044374311165
+---
+Guard: Spirits bless your journey.
+===
+title: Guard.Travel
+tags: 
+position: 407.36093946355436,365.09551296276345
+---
+Guard: We will lead you as close as we can.
+<<useAction FlagHolder 2>>
+<<loadScene FlagHolder 3>>
+===
