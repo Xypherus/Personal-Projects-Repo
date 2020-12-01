@@ -1,0 +1,63 @@
+﻿title: Inquisitor
+tags: 
+position: -56.26166758197304,25.727960326299254
+---
+RaidLeader: Avatar, you have returned.
+RaidLeader: I have served the Radiant for all my life.
+RaidLeader: And now you appear before me.
+RaidLeader: I... Apologies my lord.
+Aalan: I am Inquisitor Aalan of Navarr
+Aalan: If you would, might you join us in wiping out these heretics of the frontier.
+[[Why is an Inquisitor leading a group of Frontier Raiders|Inquisitor.Question]]
+[[How do you intend to breach Vurne|Inquisitor.HowBreach]]
+[[Wipe out the Raiders|Inquisitor.WipeOut]]
+===
+title: Inquisitor.HowBreach
+tags: 
+position: -185.05254439775814,344.64521531092976
+---
+Aalan: True, frontier towns are known for resilience if nothing else.
+Aalan: But for that we have found a solution.
+Aalan: There is always one who will turn to the true path.
+Aalan: And they shall be our agent. They will open the gates for us.
+<<set $ThereIsInfiltrator to true>>
+[[I will aid you|Inquisitor.Aid]]
+[[And who is this agent|Inquisitor.QuestionAgent]]
+===
+title: Inquisitor.Question
+tags: 
+position: 78.54032197258626,342.44956915774367
+---
+Aalan: There are far more heathens out in the frontier than we have resources to hunt down.
+Aalan: So I have taken it upon myself to rectify this issue.
+Aalan: Heathens they may be, but these raiders are a useful tool in ridding the world of filth.
+[[How do you intend to breach Vurne|Inquisitor.HowBreach]]
+===
+
+title: Inquisitor.Aid
+tags: 
+position: -332.1618424543026,686.1497169195333
+---
+Aalan: Thank you my lord.
+Aalan: With your aid, these heretics will burn by the day's end.
+<<set $InfiltratorIdentityKnown to true>>
+<<startScreenEventLong EventCanvas "With the aid of the Agent, the town falls in moments. :break: break: In the aftermath, the traitor to town is revealed. It is the town's butcher.">>
+===
+title: Inquisitor.QuestionAgent
+tags: 
+position: -111.63805673310344,687.7374492442285
+---
+Aalan: I... I'm sorry my lord.
+Aalan: I do not know.
+Aalan: One of my assistants was tasked with recruiting, and while successful, I never asked for identities.
+[[I will aid you|Inquisitor.Aid]]
+[[Wipe out the Raiders|Inquisitor.WipeOut]]
+===
+title: Inquisitor.WipeOut
+tags: 
+position: 344.0953320203232,336.4848357843832
+---
+Aalan: Why...?
+<<set $MoreRaiders to true>>
+<<startScreenEventLong EventCanvas "The agent dispatches the Inquisitor and the Raiders with ease, but upon their return, Vurne has already been put to the torch by other raiders.">>
+===

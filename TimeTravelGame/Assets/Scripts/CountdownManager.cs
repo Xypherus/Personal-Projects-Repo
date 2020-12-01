@@ -11,7 +11,7 @@ public class CountdownManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        countdownText.text = "Actions Remaining: " + FlagManager.FlagManagerInstance.startingActions;
+        countdownText.text = "Actions Remaining: " + FlagManager.FlagManagerInstance.remainingActions;
         countdownText.gameObject.SetActive(FlagManager.FlagManagerInstance.intimeCountdownActive);
     }
 

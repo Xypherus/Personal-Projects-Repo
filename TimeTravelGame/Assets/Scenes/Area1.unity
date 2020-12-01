@@ -2156,6 +2156,62 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1265417424
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1265417426}
+  - component: {fileID: 1265417425}
+  m_Layer: 0
+  m_Name: StartupEvent
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1265417425
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265417424}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 065b6cf001d606c4cbe5648d2a990da2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  variableToCheck: $town_first_load
+  EventText: 'Ariving in the frontier town of Vurne, the agent sees that not all
+    seems to be well
+
+
+    Move: Right Click
+
+    Interact: Left Click
+
+    Save/Load:
+    Tab
+
+    Show Journal: Space'
+--- !u!4 &1265417426
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1265417424}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.054397, y: 0.7174642, z: -33.827003}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 9
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1307687191
 GameObject:
   m_ObjectHideFlags: 0
@@ -3178,7 +3234,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5290645250533413652, guid: 6928ae34ad07ac843bb40b95adb67dca, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -8
       objectReference: {fileID: 0}
     - target: {fileID: 5290645250533413652, guid: 6928ae34ad07ac843bb40b95adb67dca, type: 3}
       propertyPath: m_LocalPosition.z
@@ -3505,7 +3561,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1987747914}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -10}
+  m_LocalPosition: {x: 0, y: -8, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -3757,6 +3813,30 @@ PrefabInstance:
     - target: {fileID: 8570280568589322921, guid: a06ba74c78c7b7e46bb0444ec093fd18, type: 3}
       propertyPath: defaultVariables.Array.data[0].value
       value: true
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570280568589322921, guid: a06ba74c78c7b7e46bb0444ec093fd18, type: 3}
+      propertyPath: defaultVariables.Array.data[1].name
+      value: town_first_load
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570280568589322921, guid: a06ba74c78c7b7e46bb0444ec093fd18, type: 3}
+      propertyPath: defaultVariables.Array.data[1].value
+      value: true
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570280568589322921, guid: a06ba74c78c7b7e46bb0444ec093fd18, type: 3}
+      propertyPath: defaultVariables.Array.data[1].type
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570280568589322921, guid: a06ba74c78c7b7e46bb0444ec093fd18, type: 3}
+      propertyPath: defaultVariables.Array.data[2].name
+      value: camp_first_load
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570280568589322921, guid: a06ba74c78c7b7e46bb0444ec093fd18, type: 3}
+      propertyPath: defaultVariables.Array.data[2].value
+      value: true
+      objectReference: {fileID: 0}
+    - target: {fileID: 8570280568589322921, guid: a06ba74c78c7b7e46bb0444ec093fd18, type: 3}
+      propertyPath: defaultVariables.Array.data[2].type
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a06ba74c78c7b7e46bb0444ec093fd18, type: 3}

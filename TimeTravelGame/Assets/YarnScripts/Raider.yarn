@@ -1,0 +1,24 @@
+﻿title: Raider
+tags: 
+position: 236.2090993484967,92.85844505241937
+---
+Raider: Spirits only know why, but the boss wants to talk to you.
+Raider: He's in the tent straight ahead.
+Raider: Don't touch anything else.
+[[Wipe out the raiders|Raider.WipeOut]]
+[[Goodbye|Raider.Goodbye]]
+===
+title: Raider.Goodbye
+tags: 
+position: 109.46131755855393,365.89507956299025
+---
+Raider: Don't cause any trouble or you'll have trouble.
+===
+title: Raider.WipeOut
+tags: 
+position: 363,365
+---
+Raider: What in the hells!?
+<<set $MoreRaiders to true>>
+<<startScreenEventLong EventCanvas "The agent dispatches the raiders with ease, but upon their return, Vurne has already been put to the torch by other raiders.">>
+===

@@ -246,10 +246,14 @@ MonoBehaviour:
   - key: InfiltratorIdentityKnown
     value: 0
     journalEntry: The Infiltrator is the Verne's Butcher.
+  - key: MoreRaiders
+    value: 0
+    journalEntry: There are more raider camps than the known one.
   startSceneNumber: 2
   playerPositionToSet: {x: 0, y: 0}
   LoadingOffSave: 0
   journalText: 
+  intimeCountdownActive: 0
   startingActions: 3
   remainingActions: 0
 --- !u!4 &594245854
